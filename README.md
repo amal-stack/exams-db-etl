@@ -16,3 +16,7 @@
 | `exam_question`	         | A question part of the exam.                                                    |
 | `exam_question_response` | A student response to a question part of the exam.                              |
 
+## Source Datasets
+
+1. [College Majors | Kaggle](https://www.kaggle.com/datasets/tunguz/college-majors)
+2. [SciQ Dataset — Allen Institute for AI](https://allenai.org/data/sciq)
