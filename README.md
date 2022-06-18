@@ -24,7 +24,7 @@
 
 ## Sources
 ### Data Generators
-* The data for the student and instructors has been generated using using the data generator 
+* The data for the `student` and `instructor` tables has been generated using using the data generator 
 tool [generatedata.com](https://generatedata.com/).
 * [`student` Insert Script](/ExamsDbDataEtl/SQL/student-insert.sql)
 * [`instructor` Insert Script](/ExamsDbDataEtl/SQL/instructor-insert.sql)
