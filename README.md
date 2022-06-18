@@ -1,3 +1,5 @@
+
+[![.NET](https://github.com/amal-stack/ExamsDbDataSeeder/actions/workflows/dotnet.yml/badge.svg)](https://github.com/amal-stack/ExamsDbDataSeeder/actions/workflows/dotnet.yml)
 # Student Exam Database Data ETL
 
 ## Tables
