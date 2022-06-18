@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExamsDbDataSeeder", "ExamsDbDataSeeder\ExamsDbDataSeeder.csproj", "{BE304A02-9EDF-49B6-B419-6C6A271C5C9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExamsDbDataEtl", "ExamsDbDataEtl\ExamsDbDataEtl.csproj", "{74A30F62-08C1-423A-9180-2F5A8F9D13A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BE304A02-9EDF-49B6-B419-6C6A271C5C9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BE304A02-9EDF-49B6-B419-6C6A271C5C9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BE304A02-9EDF-49B6-B419-6C6A271C5C9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BE304A02-9EDF-49B6-B419-6C6A271C5C9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74A30F62-08C1-423A-9180-2F5A8F9D13A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74A30F62-08C1-423A-9180-2F5A8F9D13A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74A30F62-08C1-423A-9180-2F5A8F9D13A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74A30F62-08C1-423A-9180-2F5A8F9D13A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,15 +1,19 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SampleConsoleApp1.Models;
+﻿using ExamsDbDataEtl.Data;
+using ExamsDbDataEtl.Models;
+using ExamsDbDataEtl.Models.Extractors;
+using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 
-namespace SampleConsoleApp1;
+namespace ExamsDbDataEtl;
 
 public class Helpers
 {
     public static async Task InsertQuestions()
     {
         //Read the train.json file of the SciQ dataset
-        var json = await File.ReadAllTextAsync(@"C:\Users\amalk\Documents\Academics\MCA\Semester 2\DW\data\SciQ\SciQ dataset-2 3\train.json");
+        var path = Path.Combine("Datasets", "SciQ", "SciQ dataset-2 3", "train.json");
+        var json = await File.ReadAllTextAsync(path);
+
 
         // Deserialize JSON and reshape
         var questions = JsonSerializer.Deserialize<List<QuestionJsonModel>>(json,
@@ -40,14 +44,13 @@ public class Helpers
     public static async Task InsertPrograms()
     {
         // Read CSV file
-        string[] lines = await File.ReadAllLinesAsync(@"C:\Users\amalk\Documents\Academics\MCA\Semester 2\DW\data\archive\majors-list.csv");
+        string[] lines = await File.ReadAllLinesAsync(@"Datasets\CollegeMajors\majors-list.csv");
 
         // Keeps track of program names
         Dictionary<string, Models.Program> programs = new();
 
         // Create DbContext (allows interacting with the database)
         using var context = new ExamContext();
-
         foreach (var line in lines[1..]) // Ignore first line (headers)
         {
 
@@ -88,11 +91,12 @@ public class Helpers
             "Subjective Test"
         };
 
+
         foreach (var courseId in courseIds)
         {
-            context.Add(CreateExam(random, examNames, courseId));
-            context.Add(CreateExam(random, examNames, courseId));
-            context.Add(CreateExam(random, examNames, courseId));
+            //context.Add(RandomExamExtractProcess.CreateExam(random, examNames, courseId));
+            //context.Add(RandomExamExtractProcess.CreateExam(random, examNames, courseId));
+            //context.Add(RandomExamExtractProcess.CreateExam(random, examNames, courseId));
         }
 
         Console.WriteLine(await context.SaveChangesAsync());
@@ -175,40 +179,6 @@ public class Helpers
         Console.WriteLine(await context.SaveChangesAsync());
         Console.WriteLine("Saved");
     }
-
-    private static Exam CreateExam(
-        Random random,
-        string[] examNames,
-        int courseId)
-    {
-        var exam = new Exam
-        {
-            CourseId = courseId,
-            Name = examNames[random.Next(examNames.Length)],
-            StartTime = new DateTime(2010, 1, 1, 0, 0, 0, DateTimeKind.Unspecified)
-                            .AddDays(random.Next(4500))
-                            .AddHours(random.Next(24)),
-            Duration = TimeSpan.FromHours(random.Next(10))
-        };
-        HashSet<int> existingIds = new();
-        foreach (var i in Enumerable.Range(1, 50))
-        {
-            int questionId;
-            while (true)
-            {
-                questionId = random.Next(1, 11680);
-                if (!existingIds.Contains(questionId))
-                {
-                    existingIds.Add(questionId);
-                    break;
-                }
-            }
-            exam.ExamQuestions.Add(new()
-            {
-                QuestionId = questionId
-            });
-
-        }
-        return exam;
-    }
 }
+
+
