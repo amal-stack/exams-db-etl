@@ -44,15 +44,18 @@ public class RandomExamResponseExtractProcess : IAsyncExtractProcess<ExamQuestio
 
             foreach (var examQuestion in examQuestionGroup.Values)
             {
-                var answers = examQuestion.Question.Answers;
+                var answers = examQuestion.Question!.Answers;
                 var correctAnswer = answers.First(a => a.IsCorrect);
                 var incorrectAnswers = answers.Where(a => !a.IsCorrect).ToList();
+
+
+                int correctChance = GetCorrectChancesOutOf10(random);
+
                 // Add a random question response for each student
                 foreach (var studentId in studentIds)
                 {
                     // 60-40 chances of correct-incorrect
-                    bool pickCorrect = random.Next(10) > 3;
-
+                    bool pickCorrect = random.Next(1, 11) <= correctChance;
                     var choice = pickCorrect
                         ? correctAnswer
                         : incorrectAnswers[random.Next(incorrectAnswers.Count)];
@@ -69,4 +72,17 @@ public class RandomExamResponseExtractProcess : IAsyncExtractProcess<ExamQuestio
         }
         return responses;
     }
+
+    /// <summary>
+    /// Returns the number of times there is a chance of picking the correct answer out of 10.
+    /// </summary>
+    /// <param name="random"></param>
+    /// <returns></returns>
+    private static int GetCorrectChancesOutOf10(System.Random random)
+    {
+        var chances = new[] { 1, 3, 5, 7, 9 };
+
+        return chances[random.Next(chances.Length)];
+    }
+
 }
